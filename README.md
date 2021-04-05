@@ -17,3 +17,7 @@ It would be entirely possible, and relatively simple, to recreate definitions of
 
 ### Notes
 Note: This library only aims to support the standard library integer types. `{u,i}{8,16,32,64,128,size}`. If you want to use it on some more exotic integer type (ex: `u4`), then it *might* work but it may also _not_ work. If you have a problem getting some integer type working, feel free to open an issue, and potential deliberate support could be added.  
+
+### Stability
+Currently this library should likely be considered unstable since it was only recently written.  
+But, even once the workings become properly stable, it will not move to 1.0 unless `num-traits` moves to `1.0`. Or the parts that are from `num-traits` are rewritten to not depend on it.
