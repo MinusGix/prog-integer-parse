@@ -35,7 +35,20 @@ pub enum IntegerParseError {
     // /// When subtracting the new digit, it would underflow the value.
     // NegativeOverflow,
 }
-// TODO: Implement display.
+impl std::fmt::Display for IntegerParseError {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        match self {
+            Self::InvalidRadix => f.write_str("radix was outside of [2,36]"),
+            Self::Empty => f.write_str("no data"),
+            Self::UnsignedNegative => f.write_str("expected unsigned number to not be negative"),
+            Self::InvalidCharacter(ch) => f.write_fmt(format_args!("invalid character '{}'", ch)),
+            Self::RadixExceedsBounds => f.write_str("radix exceeds bounds of type"),
+            Self::DigitExceedsBounds => f.write_str("digit exceeds bounds of type"),
+            Self::SignModifyFailure => f.write_str("failed to change sign to negative"),
+            Self::ExceedsBounds => f.write_str("value exceeds bounds of type"),
+        }
+    }
+}
 
 #[derive(PartialEq)]
 enum NumberSign {
